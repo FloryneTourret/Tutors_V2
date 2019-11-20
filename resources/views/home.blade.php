@@ -1,11 +1,6 @@
-@include('app')
+@extends('app')
 
-<h1>hello</h1>
-@if (session()->exists('username'))
-	{{ session()->get('username')}}
-	@if (session()->get('tutor') == true)
-	est tuteur
-	@else
-	n'est pas tuteur
-	@endif 
-@endif
+@section('content')
+	Content blog
+	
+@endsection

@@ -1,3 +1,9 @@
+body {
+  background-color: #D9D9D9;
+  min-height: 100vh;
+  padding-bottom: 100px;
+}
+
 .login {
   height: 100vh;
   background-image: url(/images/login_background.jpg?a892a814fdfd083c33235ee275890298);
@@ -15,7 +21,7 @@
   background-color: white;
   color: #67073A;
   font-size: 1.5rem;
-  width: 50%;
+  min-width: 50%;
   margin: auto;
   margin-top: 50vh;
   padding: 10px;
@@ -27,5 +33,110 @@
   background-color: transparent;
   color: white;
   border-color: white;
+}
+
+.navbar {
+  height: 40vh;
+  background-image: url(/images/background.png?7878b636dd73844e4f0937749f9a5ceb);
+  background-position: 50% 50%;
+  background-size: cover;
+}
+
+.navbar .uk-navbar-container {
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+.navbar .uk-navbar-container a {
+  color: #D9D9D9;
+}
+
+.navbar .uk-navbar-container a:hover {
+  color: white;
+}
+
+.navbar .uk-navbar-container .uk-active a {
+  color: white;
+}
+
+.navbar .uk-navbar-container .uk-navbar-dropdown a {
+  color: #67073A;
+}
+
+.navbar .uk-navbar-container .uk-navbar-dropdown a:hover {
+  color: black;
+}
+
+.main {
+  width: 95%;
+  margin: auto;
+  position: relative;
+  top: -50px;
+  background-color: white;
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+}
+
+.main .content {
+  padding: 50px;
+}
+
+.main-dashboard .navbarDashboard {
+  height: 40vh;
+  background-image: url(/images/background.png?7878b636dd73844e4f0937749f9a5ceb);
+  background-position: 50% 50%;
+  background-size: cover;
+}
+
+.main-dashboard .navbarDashboard .uk-navbar-container {
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+.main-dashboard .navbarDashboard .uk-navbar-container a {
+  color: #D9D9D9;
+}
+
+.main-dashboard .navbarDashboard .uk-navbar-container a:hover {
+  color: white;
+}
+
+.main-dashboard .navbarDashboard .uk-navbar-container .uk-active a {
+  color: white;
+}
+
+.main-dashboard .navbarDashboard .uk-navbar-container .uk-navbar-dropdown a {
+  color: #67073A;
+}
+
+.main-dashboard .navbarDashboard .uk-navbar-container .uk-navbar-dropdown a:hover {
+  color: black;
+}
+
+.sidebarDashboard {
+  background-color: white;
+  height: 100vh;
+  position: fixed;
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.sidebarDashboard .content {
+  padding: 20px;
+}
+
+.sidebarDashboard .content .uk-active.uk-nav-header {
+  padding: 50px 0;
+  text-align: center;
+}
+
+.sidebarDashboard .content .uk-active.uk-nav-header a {
+  color: #67073A;
+  font-weight: bold;
+  font-size: 2rem;
 }
 

@@ -10,13 +10,20 @@
 	<link rel="stylesheet" href="assets/css/app.css" />
 </head>
 <body>
-	<div class="navbar">
-		@include('includes.nav')
-	</div>
+	
+	<div uk-grid>
 
-	<div class="main">
-		<div class="content">
-			@yield('content')
+		<div class="uk-width-1-4@s sidebarDashboard">
+			@include('includes.sidebar')
+		</div>
+		
+		<div class="uk-width-expand@m main-dashboard">
+			<div class="navbarDashboard">
+				@include('includes.navDashboard')
+			</div>
+			<div class="content">
+				@yield('content')
+			</div>
 		</div>
 	</div>
 

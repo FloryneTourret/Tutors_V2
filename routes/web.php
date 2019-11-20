@@ -15,6 +15,10 @@ Route::get('/',
     'HomeController@index'
 )->name('home');
 
+Route::get('/dashboard',
+    'DashboardController@index'
+)->name('dashboard');
+
 Route::get('/login',
     'LoginController@index'
 )->name('login');

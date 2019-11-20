@@ -1,5 +1,11 @@
 $pink: #67073A
-	
+$grey: #D9D9D9
+
+body
+	background-color: $grey
+	min-height: 100vh
+	padding-bottom: 100px
+
 .login
 	height: 100vh
 	background-image: url('../img/login_background.jpg')
@@ -14,7 +20,7 @@ $pink: #67073A
 			background-color: white
 			color: $pink
 			font-size: 1.5rem
-			width: 50%
+			min-width: 50%
 			margin: auto
 			margin-top: 50vh
 			padding: 10px
@@ -23,3 +29,78 @@ $pink: #67073A
 				background-color: transparent
 				color: white
 				border-color: white
+
+.navbar
+	height: 40vh
+	background-image: url('../img/background.png')
+	background-position: 50% 50%
+	background-size: cover
+	.uk-navbar-container
+		background-color: transparent
+		position: fixed
+		top: 0
+		right: 0
+		left: 0
+		a
+			color: $grey
+			&:hover
+				color: white
+		.uk-active
+			a
+				color: white
+		.uk-navbar-dropdown
+			a
+				color: $pink
+				&:hover
+					color: black
+
+.main
+	width: 95%
+	margin: auto
+	position: relative
+	top: -50px
+	background-color: white
+	-webkit-box-shadow: 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2)
+	box-shadow: 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2)
+	border-radius: 6px
+	.content
+		padding: 50px
+
+.main-dashboard
+	.navbarDashboard
+		height: 40vh
+		background-image: url('../img/background.png')
+		background-position: 50% 50%
+		background-size: cover
+		.uk-navbar-container
+			background-color: transparent
+			position: fixed
+			top: 0
+			right: 0
+			a
+				color: $grey
+				&:hover
+					color: white
+			.uk-active
+				a
+					color: white
+			.uk-navbar-dropdown
+				a
+					color: $pink
+					&:hover
+						color: black
+.sidebarDashboard
+	background-color: white
+	height: 100vh
+	position: fixed
+	-webkit-box-shadow: 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2)
+	box-shadow: 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2)
+	.content
+		padding: 20px
+		.uk-active.uk-nav-header
+			padding: 50px 0
+			text-align: center
+			a
+				color: $pink
+				font-weight: bold
+				font-size: 2rem
