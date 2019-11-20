@@ -23,3 +23,6 @@ Route::get('/logout',
     'LogoutController@index'
 )->name('logout');
 
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
