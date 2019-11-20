@@ -10,7 +10,11 @@
 </head>
 <body>
 	@include('includes.nav')
-	@yield('content')
+
+	<div class="main">
+		@yield('content')
+	</div>
+
 	<script src="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/js/uikit.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/js/uikit-icons.min.js"></script>
 </body>
