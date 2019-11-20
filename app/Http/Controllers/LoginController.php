@@ -29,14 +29,14 @@ class LoginController extends Controller
 					$this->getUser();
 				}
 				else if($this->getToken() == 0)
-				$this->getUser();
+					$this->getUser();
 				else
-				echo $this->error;
+					return redirect()->route('login');
 				
 				if(session()->exists('username'))
 				{
-					if((DB::table('tuteurs_users')->where('login', session()->get('username') )->first()) != NULL)
-						session(['tutor' => true]);
+					if(($user = DB::table('tuteurs_users')->where('login', session()->get('username') )->first()) != NULL)
+						session(['tutor' => true, 'notif' => $user->notif, 'admin' => $user->admin]);
 					else
 						session(['tutor' => false]);
 					return redirect()->route('home');
