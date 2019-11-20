@@ -85,7 +85,8 @@ class LoginController extends Controller
 	private function getUser(){
 
 		$ch = curl_init();
-
+		
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($ch, CURLOPT_URL, 'https://api.intra.42.fr/v2/me');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');

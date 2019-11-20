@@ -1,10 +1,21 @@
 $pink: #67073A
+$blue: #09295A
 $grey: #D9D9D9
+$lightpink: #920039
+$purple: #602B53
 
 body
 	background-color: $grey
 	min-height: 100vh
 	padding-bottom: 100px
+.color-pink 
+	color: $pink
+.color-lightpink 
+	color: $lightpink
+.color-purple 
+	color: $purple
+.color-blue 
+	color: $blue
 
 .login
 	height: 100vh
@@ -43,6 +54,13 @@ body
 		left: 0
 		a
 			color: $grey
+			.avatar
+				height: 30px
+				width: 30px
+				background-size: cover
+				background-position: 50% 50%
+				border-radius: 100%
+				margin-right: 10px
 			&:hover
 				color: white
 		.uk-active
@@ -74,11 +92,17 @@ body
 		background-size: cover
 		.uk-navbar-container
 			background-color: transparent
-			position: fixed
 			top: 0
 			right: 0
 			a
 				color: $grey
+				.avatar
+					height: 30px
+					width: 30px
+					background-size: cover
+					background-position: 50% 50%
+					border-radius: 100%
+					margin-right: 10px
 				&:hover
 					color: white
 			.uk-active
@@ -89,6 +113,17 @@ body
 					color: $pink
 					&:hover
 						color: black
+	.content
+		padding: 50px
+		.stats, .overview
+			.uk-card
+				border: 1px solid rgba(0, 0, 0, .05)
+				border-radius: 6px
+				background-color: #fff
+				position: relative
+				top: -30vh
+
+
 .sidebarDashboard
 	background-color: white
 	height: 100vh

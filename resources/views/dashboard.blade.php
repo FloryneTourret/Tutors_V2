@@ -11,13 +11,15 @@
 </head>
 <body>
 	
-	<div uk-grid>
+	<div uk-grid class="uk-grid-collapse">
 
-		<div class="uk-width-1-4@s sidebarDashboard">
+		<div class="uk-width-1-6@s sidebarDashboard">
 			@include('includes.sidebar')
 		</div>
 		
-		<div class="uk-width-expand@m main-dashboard">
+		<div class="uk-width-1-6@s main-dashboard">
+		</div>
+		<div class="uk-width-5-6@s main-dashboard">
 			<div class="navbarDashboard">
 				@include('includes.navDashboard')
 			</div>
