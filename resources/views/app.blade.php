@@ -9,8 +9,11 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/css/uikit.min.css" />
 </head>
 <body>
-	
+	@include('includes.nav')
 
+	<div class="main">
+		@yield('content')
+	</div>
 
 	<script src="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/js/uikit.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/js/uikit-icons.min.js"></script>
