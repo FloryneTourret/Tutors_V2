@@ -21,6 +21,7 @@ class HomeController extends Controller
 				->join('tuteurs_blog_categorie', 'tuteurs_blog_categorie.id_post', '=', 'tuteurs_blog.post_id')
 				->join('tuteurs_categories', 'tuteurs_categories.categorie_id', '=', 'tuteurs_blog_categorie.id_categorie')
 				->where('tuteurs_categories.nom', $category)
+				->latest()
 				->paginate(5);
 				$category = DB::table('tuteurs_categories')
 				->where('nom', $category)
@@ -32,6 +33,7 @@ class HomeController extends Controller
 			}
 			$posts = DB::table('tuteurs_blog')
 			->join('tuteurs_users', 'tuteurs_users.user_id', '=', 'tuteurs_blog.id_user')
+			->latest()
 			->paginate(5);
 
 			return view('home', compact('posts'), ['categories' => $categories]);

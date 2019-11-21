@@ -60,10 +60,6 @@ body {
 
 .navbar .uk-navbar-container {
   background-color: transparent;
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
 }
 
 .navbar .uk-navbar-container a {
@@ -100,13 +96,41 @@ body {
   margin: auto;
   position: relative;
   top: -50px;
-  background-color: white;
-  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+  background-color: #F9F9F9;
   border-radius: 6px;
 }
 
 .main .content {
   padding: 50px;
+}
+
+.main .content .posts .uk-card {
+  border-radius: 6px;
+}
+
+.main .content .posts .uk-card .img_post {
+  height: 200px;
+  background-position: 50% 50%;
+  background-size: cover;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+}
+
+.main .content .posts .uk-card .uk-card-media-left {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+.main .content .posts .categories {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.main .content .posts .categories a {
+  border: 1px solid #67073A;
+  color: #67073A;
+  padding: 10px 20px;
+  text-decoration: none;
 }
 
 .main-dashboard .navbarDashboard {
