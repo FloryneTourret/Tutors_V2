@@ -1,7 +1,7 @@
 body {
   background-color: #D9D9D9;
   min-height: 100vh;
-  padding-bottom: 100px;
+  padding-bottom: 20px;
 }
 
 .color-pink {
@@ -153,6 +153,8 @@ body {
 
 .main-dashboard .content {
   padding: 50px;
+  position: relative;
+  top: -30vh;
 }
 
 .main-dashboard .content .stats .uk-card,
@@ -160,8 +162,44 @@ body {
   border: 1px solid rgba(0, 0, 0, 0.05);
   border-radius: 6px;
   background-color: #fff;
-  position: relative;
-  top: -30vh;
+}
+
+.main-dashboard .content .stats .uk-card .value,
+.main-dashboard .content .overview .uk-card .value {
+  font-size: 3rem;
+}
+
+.main-dashboard .content .stats .uk-card .content_overview,
+.main-dashboard .content .overview .uk-card .content_overview {
+  margin-top: 20px;
+}
+
+.main-dashboard .content .stats .uk-card .content_overview .avatar,
+.main-dashboard .content .overview .uk-card .content_overview .avatar {
+  height: 40px;
+  width: 40px;
+  background-size: cover;
+  background-position: 50% 50%;
+  border-radius: 100%;
+  margin-right: 10px;
+}
+
+.main-dashboard .content .stats .uk-card .content_overview a,
+.main-dashboard .content .overview .uk-card .content_overview a {
+  color: #67073A;
+  text-decoration: none;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.main-dashboard .content .stats .uk-card .content_overview a:hover,
+.main-dashboard .content .overview .uk-card .content_overview a:hover {
+  color: #920039;
+}
+
+.main-dashboard .content .stats .uk-card .content_overview .uk-nav-header,
+.main-dashboard .content .overview .uk-card .content_overview .uk-nav-header {
+  padding-top: 30px;
 }
 
 .sidebarDashboard {

@@ -15,9 +15,34 @@ Route::get('/',
     'HomeController@index'
 )->name('home');
 
+
+
 Route::get('/dashboard',
     'DashboardController@index'
 )->name('dashboard');
+
+Route::get('/dashboard/events',
+    'DashboardController@index'
+)->name('events');
+Route::get('/dashboard/event/{id}',
+    'DashboardController@index'
+)->name('event');
+
+Route::get('/dashboard/suggestions',
+    'DashboardController@index'
+)->name('suggestions');
+Route::get('/dashboard/suggestion/{id}',
+    'DashboardController@index'
+)->name('sugestion');
+
+Route::get('/dashboard/sessions',
+    'DashboardController@index'
+)->name('sessions');
+Route::get('/dashboard/suivi/{id}',
+    'DashboardController@index'
+)->name('suivi');
+
+
 
 Route::get('/login',
     'LoginController@index'

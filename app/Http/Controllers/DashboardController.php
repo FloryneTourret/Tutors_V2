@@ -61,7 +61,7 @@ class DashboardController extends Controller
 			->limit(5)
 			->get();
 
-			var_dump($lastEvents);
+			
 			return view('user.dashboardUser', ['myEventsOn' => $myEventsOn,
 												'myEvents' => $myEvents,
 												'mySuggestions' => $mySuggestions,
