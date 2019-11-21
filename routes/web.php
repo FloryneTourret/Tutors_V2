@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/',
+Route::get('/{category?}',
     'HomeController@index'
 )->name('home');
 
