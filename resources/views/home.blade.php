@@ -1,7 +1,6 @@
 @extends('app')
 
 @section('content')
-	{{-- {{ var_dump($posts) }} --}}
 	@if (isset($error))
 <h2>{{$error}}</h2>
 	@else

@@ -11,12 +11,6 @@
 |
 */
 
-Route::get('/{category?}',
-    'HomeController@index'
-)->name('home');
-
-
-
 Route::get('/dashboard',
     'DashboardController@index'
 )->name('dashboard');
@@ -42,6 +36,10 @@ Route::get('/dashboard/suivi/{id}',
     'DashboardController@index'
 )->name('suivi');
 
+
+Route::get('/{category?}',
+    'HomeController@index'
+)->name('home');
 
 
 Route::get('/login',

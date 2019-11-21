@@ -21,7 +21,7 @@ class HomeController extends Controller
 				->join('tuteurs_blog_categorie', 'tuteurs_blog_categorie.id_post', '=', 'tuteurs_blog.post_id')
 				->join('tuteurs_categories', 'tuteurs_categories.categorie_id', '=', 'tuteurs_blog_categorie.id_categorie')
 				->where('tuteurs_categories.nom', $category)
-				->paginate(1);
+				->paginate(5);
 				$category = DB::table('tuteurs_categories')
 				->where('nom', $category)
 				->first();
