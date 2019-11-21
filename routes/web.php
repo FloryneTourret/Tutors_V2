@@ -37,11 +37,6 @@ Route::get('/dashboard/suivi/{id}',
 )->name('suivi');
 
 
-Route::get('/{category?}',
-    'HomeController@index'
-)->name('home');
-
-
 Route::get('/login',
     'LoginController@index'
 )->name('login');
@@ -49,6 +44,14 @@ Route::get('/login',
 Route::get('/logout',
     'LogoutController@index'
 )->name('logout');
+
+
+Route::get('/{category?}',
+    'HomeController@index'
+)->name('home');
+
+
+
 
 // Route::group(['prefix' => 'admin'], function () {
 //     Voyager::routes();
