@@ -94,6 +94,54 @@ class DashboardController extends Controller
 		}
 	}
 
+	public function event($id) {
+		if ($id) {
+			$event = DB::table('tuteurs_events')
+			->where('event_id', $id)
+			->get();
+			if ($event) {
+				$id_event = $event[0]->event_id;
+				$comments = DB::table('tuteurs_event_commentaires')
+				->where('event_id', $id_event)
+				->get();
+
+				$lead = DB::table('tuteurs_event_lead')
+				->join('tuteurs_users', 'tuteurs_event_lead.id_user', '=', 'tuteurs_users.user_id')
+				->where('id_event', $id_event)
+				->get('login');
+				
+				$likes = DB::table('tuteurs_event_like')
+				->join('tuteurs_users', 'tuteurs_event_like.user_id', '=', 'tuteurs_users.user_id')
+				->where('event_id', $id_event)
+				->get();
+
+				$orga = DB::table('tuteurs_event_orga')
+				->where('event_id', $id_event)
+				->get();
+
+				$contributors = DB::table('tuteurs_event_participant')
+				->join('tuteurs_users', 'tuteurs_event_participant.id_user', '=', 'tuteurs_users.user_id')
+				->where('id_event', $id_event)
+				->get('login');
+
+				$volunteers = DB::table('tuteurs_event_volontaire')
+				->join('tuteurs_users', 'tuteurs_event_volontaire.id_user', '=', 'tuteurs_users.user_id')
+				->where('id_event', $id_event)
+				->get('login');
+				
+				return view('user.event', ['comments' => $comments,
+											'lead' => $lead,
+											'likes' => $likes,
+											'orga' => $orga,
+											'contributors' => $contributors,
+											'volunteers' => $volunteers
+				]);
+			}
+			else 
+				return view('user.event', ['error' => "Désolé, cet event n'existe pas."]);
+		}
+	}
+
 	
 	public function userupdate($value) {
 		if ($value == 0 || $value == 1)
