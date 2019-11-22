@@ -16,7 +16,7 @@ Route::get('/dashboard',
 )->name('dashboard');
 
 Route::get('/dashboard/events',
-    'DashboardController@index'
+    'DashboardController@events'
 )->name('events');
 Route::get('/dashboard/event/{id}',
     'DashboardController@index'

@@ -136,4 +136,20 @@ class DashboardController extends Controller
 
 		return($tutor);
 	}
+
+	public function events()
+	{
+		if(!session()->exists('username'))
+			return redirect()->route('login');
+		else if(session()->get('tutor') == false)	
+			return redirect()->route('home');
+		else
+		{
+			$today = date("Y-m-d");
+			$events = DB::table('tuteurs_events')
+			->where(DB::raw('count(*) from `tuteurs_event_commentaires` where tuteurs_event_commentaires.event_id = tuteurs_events.event_id as comments, *'))
+			->get();
+			var_dump($events);
+		}
+	}
 }
