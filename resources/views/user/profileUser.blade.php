@@ -34,14 +34,14 @@
                 @if ($user->login == session()->get('username'))
                 <div class="notifs text-center">
                     <span>Recevoir les notifications par email</span>
-                    <form action="/dashboard/user/update" method="POST">
+                    <form>
                         @method('PUT')
                         @csrf
                         <label class="switch" for="checkbox">
                             @if($tutor->notif == 0)
-                            <input type="checkbox" id="checkbox" onChange="this.form.submit()"/>
+                            <input type="checkbox" id="checkbox" onChange="update(this)"/>
                             @else
-                            <input type="checkbox" id="checkbox" onChange="this.form.submit()" checked />
+                            <input type="checkbox" id="checkbox" onChange="update(this)" checked />
                             @endif
                             <div class="slider round"></div>
                         </label>
@@ -57,14 +57,11 @@
 @endif
 
 <script>
-function update(){
-    axios.put('/dashboard/user/update' )
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch (response => {
-            // List errors on response...
-        });
+function update(input){
+    if (input.checked == true)
+        axios.put('/dashboard/user/update/1')
+    else
+        axios.put('/dashboard/user/update/0')
 }
 </script>
 @endsection

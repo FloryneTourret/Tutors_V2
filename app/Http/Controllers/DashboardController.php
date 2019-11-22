@@ -72,6 +72,14 @@ class DashboardController extends Controller
 		}
 	}
 
+	public function userupdate($value) {
+		if ($value == 0 || $value == 1)
+		{
+			DB::table('tuteurs_users')
+			->where('login', session()->get('username'))
+			->update(['notif' => $value]);
+		}
+	}
 
 	public function user($username = null){
 		if(!session()->exists('username'))
