@@ -36,8 +36,8 @@ Route::get('/dashboard/suivi/{id}',
     'DashboardController@index'
 )->name('suivi');
 
-Route::put('/dashboard/user/update',
-    'DashboardController@user'
+Route::put('/dashboard/user/update/{value}',
+    'DashboardController@userupdate'
 )->name('user');
 Route::get('/dashboard/user/{username?}',
     'DashboardController@user'
