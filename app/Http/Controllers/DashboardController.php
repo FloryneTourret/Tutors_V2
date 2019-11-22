@@ -86,31 +86,54 @@ class DashboardController extends Controller
 				$exist = true;
 			}
 			else{
-				$token = session()->get('token');
 				$username = trim(addslashes(htmlspecialchars($username)));
-				$ch = curl_init();
-		
-				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-				curl_setopt($ch, CURLOPT_URL, 'https://api.intra.42.fr/v2/users/'.$username);
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+				$user = $this->getUser($username);
 
-				$headers = array();
-				$headers[] = 'Authorization: Bearer '.$token;
-				curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-				$result = curl_exec($ch);
-				if (curl_errno($ch)) {
-					echo 'Error:' . curl_error($ch);
-				}
-				curl_close ($ch);
-				$user = json_decode($result);
 				if(isset($user->login))
 					$exist = true;
 				else
 					$exist = false;
 			}
-			return view('user.profileUser', ['exist' => $exist,'user' => $user]);
+
+			if ($exist == true)
+			{
+				$tutor = $this->getTutor($username);
+
+			}
+			else
+			{
+				$tutor = null;
+			}
+			return view('user.profileUser', ['exist' => $exist,'user' => $user, 'tutor' => $tutor]);
 		}
+	}
+
+	private function getUser($username){
+		$token = session()->get('token');
+		$ch = curl_init();
+
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_URL, 'https://api.intra.42.fr/v2/users/'.$username);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+
+		$headers = array();
+		$headers[] = 'Authorization: Bearer '.$token;
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+		$result = curl_exec($ch);
+		if (curl_errno($ch)) {
+			echo 'Error:' . curl_error($ch);
+		}
+		curl_close ($ch);
+		return (json_decode($result));
+	}
+
+	private function getTutor($username){
+		$tutor = DB::table('tuteurs_users')
+		->where('tuteurs_users.login', $username)
+		->first();
+
+		return($tutor);
 	}
 }

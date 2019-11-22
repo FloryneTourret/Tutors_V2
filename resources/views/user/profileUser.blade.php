@@ -1,7 +1,7 @@
 @extends('dashboard')
 
 @section('content')
-@if ($exist == true)
+@if ($exist == true && $tutor)
 <h1 class="color-white">Bonjour {{ $user->login }}</h1>
 <div class="overview" uk-grid="masonry: true">
     <div class="uk-width-3-5@s">
@@ -16,11 +16,37 @@
         <div class="uk-card uk-card-default uk-card-body">
             <div class="content_overview">
                 <div class="profile_picture" style="background-image: url( {{ $user->image_url }});"></div>
-                <p class="uk-text-uppercase uk-text-bold text-center">{{ $user->login }}</p>
+                <p class="uk-text-uppercase uk-text-bold text-center">
+                    @if($tutor->developer == 1)
+                        <span class="dev">Intra Team</span>
+                    @endif {{ $user->login }}</p>
                 <p class="text-center">{{ $user->email }}</p>
-                <p>Rôle</p>
+                <p class="text-center uk-text-italic">
+                    @if($tutor->admin == 0)
+                        <span>Tuteur</span>
+                    @elseif($tutor->admin == 1)
+                        <span>Tuteur mentor</span>
+                    @else
+                        <span>Admin</span>
+                    @endif 
+                </p>
+
                 @if ($user->login == session()->get('username'))
-                    <span>Notifications par email</span>
+                <div class="notifs text-center">
+                    <span>Recevoir les notifications par email</span>
+                    <form action="/dashboard/user/update" method="POST">
+                        @method('PUT')
+                        @csrf
+                        <label class="switch" for="checkbox">
+                            @if($tutor->notif == 0)
+                            <input type="checkbox" id="checkbox" onChange="this.form.submit()"/>
+                            @else
+                            <input type="checkbox" id="checkbox" onChange="this.form.submit()" checked />
+                            @endif
+                            <div class="slider round"></div>
+                        </label>
+                    </form>
+                </div>  
                 @endif
             </div>
         </div>
