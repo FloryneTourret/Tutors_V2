@@ -56,4 +56,15 @@
 <h1 class="color-white">Utilisateur inconnu</h1>
 @endif
 
+<script>
+function update(){
+    axios.put('/dashboard/user/update' )
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch (response => {
+            // List errors on response...
+        });
+}
+</script>
 @endsection
