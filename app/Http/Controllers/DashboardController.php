@@ -72,6 +72,27 @@ class DashboardController extends Controller
 		}
 	}
 
+	public function events()
+	{
+		if(!session()->exists('username'))
+			return redirect()->route('login');
+		else if(session()->get('tutor') == false)	
+			return redirect()->route('home');
+		else
+		{
+			$today = date("Y-m-d");
+			$events = DB::table('tuteurs_events')
+			->select('*', 
+				DB::raw('(select count(*) from tuteurs_event_commentaires where tuteurs_event_commentaires.event_id = tuteurs_events.event_id) as comments_count'), 
+				DB::raw('(select count(*) from tuteurs_event_orga where tuteurs_event_orga.event_id = tuteurs_events.event_id) as orga_count'),
+				DB::raw('(select count(*) from tuteurs_event_like where tuteurs_event_like.event_id = tuteurs_events.event_id) as like_count'))
+			->leftJoin('tuteurs_event_lead', 'tuteurs_event_lead.id_event', '=', 'tuteurs_events.event_id')
+			->leftJoin('tuteurs_users', 'tuteurs_event_lead.id_user', '=', 'tuteurs_users.user_id')
+			->where('tuteurs_events.date_fin', '>=', $today)
+			->get();
+			return view('user.eventsUser', ['events' => $events]);
+		}
+	}
 
 	public function user($username = null){
 		if(!session()->exists('username'))
@@ -137,19 +158,5 @@ class DashboardController extends Controller
 		return($tutor);
 	}
 
-	public function events()
-	{
-		if(!session()->exists('username'))
-			return redirect()->route('login');
-		else if(session()->get('tutor') == false)	
-			return redirect()->route('home');
-		else
-		{
-			$today = date("Y-m-d");
-			$events = DB::table('tuteurs_events')
-			->where(DB::raw('count(*) from `tuteurs_event_commentaires` where tuteurs_event_commentaires.event_id = tuteurs_events.event_id as comments, *'))
-			->get();
-			var_dump($events);
-		}
-	}
+	
 }
