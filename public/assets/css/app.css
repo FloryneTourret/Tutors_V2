@@ -28,6 +28,10 @@ body {
   text-align: center;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 .switch {
   display: inline-block;
   height: 24px;

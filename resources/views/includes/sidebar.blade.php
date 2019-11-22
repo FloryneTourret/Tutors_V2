@@ -10,7 +10,7 @@
 		<a href="#"><span class="uk-margin-small-right" uk-icon="icon: calendar"></span>Events</a>
 		<ul class="uk-nav-sub">
 			<li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: plus"></span>Ajouter un event</a></li>
-			<li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: thumbnails"></span>Liste des events</a></li>
+			<li><a href="{{route('events')}}"><span class="uk-margin-small-right" uk-icon="icon: thumbnails"></span>Liste des events</a></li>
 		</ul>
 	</li>
 	<li class="uk-parent">

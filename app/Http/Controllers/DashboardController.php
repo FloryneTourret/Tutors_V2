@@ -89,12 +89,13 @@ class DashboardController extends Controller
 			->leftJoin('tuteurs_event_lead', 'tuteurs_event_lead.id_event', '=', 'tuteurs_events.event_id')
 			->leftJoin('tuteurs_users', 'tuteurs_event_lead.id_user', '=', 'tuteurs_users.user_id')
 			->where('tuteurs_events.date_fin', '>=', $today)
+			->latest()
 			->get();
-			return view('user.eventsUser', ['events' => $events]);
+			return view('user.events', ['events' => $events]);
 		}
 	}
 
-	
+
 	public function userupdate($value) {
 		if ($value == 0 || $value == 1)
 		{
