@@ -15,41 +15,11 @@ class DashboardController extends Controller
 			return redirect()->route('home');
 		else
 		{
-			$today = date("Y-m-d H:i:s");
-			$myEventsOn = DB::table('tuteurs_events')
-			->join('tuteurs_event_participant', 'tuteurs_event_participant.id_event', '=', 'tuteurs_events.event_id')
-			->join('tuteurs_users', 'tuteurs_users.user_id', '=', 'tuteurs_event_participant.id_user')
-			->where('tuteurs_users.login', session()->get('username'))
-			->where('date_fin', '>=', $today)
-			->get();
-
-			$myEvents = DB::table('tuteurs_events')
-			->join('tuteurs_event_participant', 'tuteurs_event_participant.id_event', '=', 'tuteurs_events.event_id')
-			->join('tuteurs_users', 'tuteurs_users.user_id', '=', 'tuteurs_event_participant.id_user')
-			->where('tuteurs_users.login', session()->get('username'))
-			->get();
-
-			$mySuggestions = DB::table('tuteurs_suggestions')
-			->join('tuteurs_users', 'tuteurs_users.user_id', '=', 'tuteurs_suggestions.id_user')
-			->where('tuteurs_users.login', session()->get('username'))
-			->get();
-
-			$myHelpSessions = DB::table('tuteurs_suivi')
-			->join('tuteurs_users', function ($join) {
-				$join->on('tuteurs_suivi.id_user1', '=', 'tuteurs_users.user_id')
-				->orOn('tuteurs_suivi.id_user2', '=', 'tuteurs_users.user_id');
-			})
-			->where('tuteurs_users.login', session()->get('username'))
-			->get();
-
-			$myHelpSessionsOn = DB::table('tuteurs_suivi')
-			->join('tuteurs_users', function ($join) {
-				$join->on('tuteurs_suivi.id_user1', '=', 'tuteurs_users.user_id')
-				->orOn('tuteurs_suivi.id_user2', '=', 'tuteurs_users.user_id');
-			})
-			->where('tuteurs_users.login', session()->get('username'))
-			->where('tuteurs_suivi.resolu', 0)
-			->get();
+			$myEventsOn = $this->getMyEventsOn(session()->get('username'));
+			$myEvents = $this->getMyEvents(session()->get('username'));
+			$mySuggestions = $this->getMySuggestions(session()->get('username'));
+			$myHelpSessions = $this->getMyHelpSessions(session()->get('username'));
+			$myHelpSessionsOn = $this->getMyHelpSessionsOn(session()->get('username'));
 
 			$lastSuggestions = DB::table('tuteurs_suggestions')
 			->latest()
@@ -179,13 +149,30 @@ class DashboardController extends Controller
 			if ($exist == true)
 			{
 				$tutor = $this->getTutor($username);
-
+				$myEventsOn = $this->getMyEventsOn($username);
+				$myEvents = $this->getMyEvents($username);
+				$mySuggestions = $this->getMySuggestions($username);
+				$myHelpSessions = $this->getMyHelpSessions($username);
+				$myHelpSessionsOn = $this->getMyHelpSessionsOn($username);
 			}
 			else
 			{
 				$tutor = null;
+				$myEventsOn = null;
+				$myEvents = null;
+				$mySuggestions = null;
+				$myHelpSessions = null;
+				$myHelpSessionsOn = null;
 			}
-			return view('user.profileUser', ['exist' => $exist,'user' => $user, 'tutor' => $tutor]);
+			return view('user.profileUser', ['exist' => $exist,
+											'user' => $user, 
+											'tutor' => $tutor,
+											'myEventsOn' => $myEventsOn,
+											'myEvents' => $myEvents,
+											'mySuggestions' => $mySuggestions,
+											'myHelpSessions' => $myHelpSessions,
+											'myHelpSessionsOn' => $myHelpSessionsOn
+											]);
 		}
 	}
 
@@ -216,6 +203,57 @@ class DashboardController extends Controller
 		->first();
 
 		return($tutor);
+	}
+
+	private function getMyEventsOn($username){
+		$today = date("Y-m-d H:i:s");
+		$data = DB::table('tuteurs_events')
+		->join('tuteurs_event_participant', 'tuteurs_event_participant.id_event', '=', 'tuteurs_events.event_id')
+		->join('tuteurs_users', 'tuteurs_users.user_id', '=', 'tuteurs_event_participant.id_user')
+		->where('tuteurs_users.login', $username)
+		->where('date_fin', '>=', $today)
+		->get();
+		return $data;
+	}
+
+	private function getMyEvents($username){
+		$data = DB::table('tuteurs_events')
+		->join('tuteurs_event_participant', 'tuteurs_event_participant.id_event', '=', 'tuteurs_events.event_id')
+		->join('tuteurs_users', 'tuteurs_users.user_id', '=', 'tuteurs_event_participant.id_user')
+		->where('tuteurs_users.login', $username)
+		->get();
+		return $data;
+	}
+
+	private function getMySuggestions($username){
+		$data =  DB::table('tuteurs_suggestions')
+		->join('tuteurs_users', 'tuteurs_users.user_id', '=', 'tuteurs_suggestions.id_user')
+		->where('tuteurs_users.login', $username)
+		->get();
+		return $data;
+	}
+
+	private function getMyHelpSessions($username){
+		$data = DB::table('tuteurs_suivi')
+		->join('tuteurs_users', function ($join) {
+			$join->on('tuteurs_suivi.id_user1', '=', 'tuteurs_users.user_id')
+			->orOn('tuteurs_suivi.id_user2', '=', 'tuteurs_users.user_id');
+		})
+		->where('tuteurs_users.login', $username)
+		->get();
+		return $data;
+	}
+
+	private function getMyHelpSessionsOn($username){
+		$data = DB::table('tuteurs_suivi')
+		->join('tuteurs_users', function ($join) {
+			$join->on('tuteurs_suivi.id_user1', '=', 'tuteurs_users.user_id')
+			->orOn('tuteurs_suivi.id_user2', '=', 'tuteurs_users.user_id');
+		})
+		->where('tuteurs_users.login', $username)
+		->where('tuteurs_suivi.resolu', 0)
+		->get();
+		return $data;
 	}
 
 	

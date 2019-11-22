@@ -9,6 +9,11 @@
             <small class="uk-text-uppercase uk-text-muted"><span class="uk-margin-small-right" uk-icon="icon: database"></span>Statistiques</small>
             <div class="content_overview">
                 Statistiques user
+                {{$myEventsOn}}
+                {{$myEvents}}
+                {{$mySuggestions}}
+                {{$myHelpSessions}}
+                {{$myHelpSessionsOn}}
             </div>
         </div>
     </div>
