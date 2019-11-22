@@ -19,7 +19,7 @@ Route::get('/dashboard/events',
     'DashboardController@events'
 )->name('events');
 Route::get('/dashboard/event/{id}',
-    'DashboardController@index'
+    'DashboardController@event'
 )->name('event');
 
 Route::get('/dashboard/suggestions',
