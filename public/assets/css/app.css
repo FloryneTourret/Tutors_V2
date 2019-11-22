@@ -20,6 +20,14 @@ body {
   color: #09295A;
 }
 
+.color-white {
+  color: white;
+}
+
+.text-center {
+  text-align: center;
+}
+
 .login {
   height: 100vh;
   background-image: url(/images/login_background.jpg?a892a814fdfd083c33235ee275890298);
@@ -181,6 +189,10 @@ body {
   top: -30vh;
 }
 
+.main-dashboard .content h1 {
+  margin-bottom: 50px;
+}
+
 .main-dashboard .content .stats .uk-card,
 .main-dashboard .content .overview .uk-card {
   border: 1px solid rgba(0, 0, 0, 0.05);
@@ -224,6 +236,17 @@ body {
 .main-dashboard .content .stats .uk-card .content_overview .uk-nav-header,
 .main-dashboard .content .overview .uk-card .content_overview .uk-nav-header {
   padding-top: 30px;
+}
+
+.main-dashboard .content .stats .uk-card .content_overview .profile_picture,
+.main-dashboard .content .overview .uk-card .content_overview .profile_picture {
+  height: 150px;
+  width: 150px;
+  background-size: cover;
+  background-position: 50% 50%;
+  border-radius: 100%;
+  margin: auto;
+  margin-top: -125px;
 }
 
 .sidebarDashboard {

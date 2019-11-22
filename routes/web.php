@@ -36,6 +36,10 @@ Route::get('/dashboard/suivi/{id}',
     'DashboardController@index'
 )->name('suivi');
 
+Route::get('/dashboard/user/{username?}',
+    'DashboardController@user'
+)->name('user');
+
 
 Route::get('/login',
     'LoginController@index'

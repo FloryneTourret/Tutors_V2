@@ -71,4 +71,46 @@ class DashboardController extends Controller
 												'lastEvents' => $lastEvents]);
 		}
 	}
+
+
+	public function user($username = null){
+		if(!session()->exists('username'))
+			return redirect()->route('login');
+		else if(session()->get('tutor') == false)	
+			return redirect()->route('home');
+		else
+		{
+			if($username == null){
+				$username = session()->get('username');
+				$user = json_decode(session()->get('user'));
+				$exist = true;
+			}
+			else{
+				$token = session()->get('token');
+				$username = trim(addslashes(htmlspecialchars($username)));
+				$ch = curl_init();
+		
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+				curl_setopt($ch, CURLOPT_URL, 'https://api.intra.42.fr/v2/users/'.$username);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+
+				$headers = array();
+				$headers[] = 'Authorization: Bearer '.$token;
+				curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+				$result = curl_exec($ch);
+				if (curl_errno($ch)) {
+					echo 'Error:' . curl_error($ch);
+				}
+				curl_close ($ch);
+				$user = json_decode($result);
+				if(isset($user->login))
+					$exist = true;
+				else
+					$exist = false;
+			}
+			return view('user.profileUser', ['exist' => $exist,'user' => $user]);
+		}
+	}
 }
