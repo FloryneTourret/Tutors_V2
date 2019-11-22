@@ -34,18 +34,15 @@
                 @if ($user->login == session()->get('username'))
                 <div class="notifs text-center">
                     <span>Recevoir les notifications par email</span>
-                    <form>
-                        @method('PUT')
-                        @csrf
-                        <label class="switch" for="checkbox">
-                            @if($tutor->notif == 0)
-                            <input type="checkbox" id="checkbox" onChange="update(this)"/>
-                            @else
-                            <input type="checkbox" id="checkbox" onChange="update(this)" checked />
-                            @endif
-                            <div class="slider round"></div>
-                        </label>
-                    </form>
+                    <br>
+                    <label class="switch" for="checkbox">
+                        @if($tutor->notif == 0)
+                        <input type="checkbox" id="checkbox" onChange="update(this)"/>
+                        @else
+                        <input type="checkbox" id="checkbox" onChange="update(this)" checked />
+                        @endif
+                        <div class="slider round"></div>
+                    </label>
                 </div>  
                 @endif
             </div>

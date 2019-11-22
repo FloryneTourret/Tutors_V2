@@ -5,6 +5,7 @@
         {{$error}}
     @else
         <p style="color:white">Value : <br>
+            $event<br>
             $comments<br>
             $lead<br>
             $likes<br>

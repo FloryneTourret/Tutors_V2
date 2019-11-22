@@ -130,7 +130,8 @@ class DashboardController extends Controller
 				->where('id_event', $id_event)
 				->get('login');
 				
-				return view('user.event', ['comments' => $comments,
+				return view('user.event', ['event' => $event,
+											'comments' => $comments,
 											'lead' => $lead,
 											'likes' => $likes,
 											'orga' => $orga,
