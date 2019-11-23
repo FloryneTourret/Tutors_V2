@@ -69,12 +69,13 @@ class DashboardController extends Controller
 		if ($id) {
 			$event = DB::table('tuteurs_events')
 			->where('event_id', $id)
-			->get();
+			->first();
 			if ($event) {
-				$id_event = $event[0]->event_id;
+				$id_event = $event->event_id;
 				$comments = DB::table('tuteurs_event_commentaires')
+				->join('tuteurs_users', 'tuteurs_event_commentaires.user_id', '=', 'tuteurs_users.user_id')
 				->where('event_id', $id_event)
-				->get();
+				->get(['id', 'commentaire', 'commentaire_date', 'login']);
 
 				$lead = DB::table('tuteurs_event_lead')
 				->join('tuteurs_users', 'tuteurs_event_lead.id_user', '=', 'tuteurs_users.user_id')
@@ -84,19 +85,15 @@ class DashboardController extends Controller
 				$likes = DB::table('tuteurs_event_like')
 				->join('tuteurs_users', 'tuteurs_event_like.user_id', '=', 'tuteurs_users.user_id')
 				->where('event_id', $id_event)
-				->get();
+				->get('login');
 
 				$orga = DB::table('tuteurs_event_orga')
+				->join('tuteurs_users', 'tuteurs_event_orga.user_id', '=', 'tuteurs_users.user_id')
 				->where('event_id', $id_event)
-				->get();
+				->get(['id', 'commentaire', 'commentaire_date', 'login']);
 
 				$contributors = DB::table('tuteurs_event_participant')
 				->join('tuteurs_users', 'tuteurs_event_participant.id_user', '=', 'tuteurs_users.user_id')
-				->where('id_event', $id_event)
-				->get('login');
-
-				$volunteers = DB::table('tuteurs_event_volontaire')
-				->join('tuteurs_users', 'tuteurs_event_volontaire.id_user', '=', 'tuteurs_users.user_id')
 				->where('id_event', $id_event)
 				->get('login');
 				
@@ -105,22 +102,11 @@ class DashboardController extends Controller
 											'lead' => $lead,
 											'likes' => $likes,
 											'orga' => $orga,
-											'contributors' => $contributors,
-											'volunteers' => $volunteers
+											'contributors' => $contributors
 				]);
 			}
 			else 
 				return view('user.event', ['error' => "Désolé, cet event n'existe pas."]);
-		}
-	}
-
-	
-	public function userupdate($value) {
-		if ($value == 0 || $value == 1)
-		{
-			DB::table('tuteurs_users')
-			->where('login', session()->get('username'))
-			->update(['notif' => $value]);
 		}
 	}
 
@@ -149,32 +135,41 @@ class DashboardController extends Controller
 			if ($exist == true)
 			{
 				$tutor = $this->getTutor($username);
-				$myEventsOn = $this->getMyEventsOn($username);
-				$myEvents = $this->getMyEvents($username);
-				$mySuggestions = $this->getMySuggestions($username);
-				$myHelpSessions = $this->getMyHelpSessions($username);
-				$myHelpSessionsOn = $this->getMyHelpSessionsOn($username);
+				$EventsOn = $this->getMyEventsOn($username);
+				$Events = $this->getMyEvents($username);
+				$Suggestions = $this->getMySuggestions($username);
+				$HelpSessions = $this->getMyHelpSessions($username);
 			}
 			else
 			{
 				$tutor = null;
-				$myEventsOn = null;
-				$myEvents = null;
-				$mySuggestions = null;
-				$myHelpSessions = null;
-				$myHelpSessionsOn = null;
+				$EventsOn = null;
+				$Events = null;
+				$Suggestions = null;
+				$HelpSessions = null;
 			}
 			return view('user.profileUser', ['exist' => $exist,
 											'user' => $user, 
 											'tutor' => $tutor,
-											'myEventsOn' => $myEventsOn,
-											'myEvents' => $myEvents,
-											'mySuggestions' => $mySuggestions,
-											'myHelpSessions' => $myHelpSessions,
-											'myHelpSessionsOn' => $myHelpSessionsOn
+											'eventsOn' => $EventsOn,
+											'events' => $Events,
+											'suggestions' => $Suggestions,
+											'helpSessions' => $HelpSessions
 											]);
 		}
 	}
+
+	public function userupdate($value) {
+		if ($value == 0 || $value == 1)
+		{
+			DB::table('tuteurs_users')
+			->where('login', session()->get('username'))
+			->update(['notif' => $value]);
+		}
+	}
+
+
+
 
 	private function getUser($username){
 		$token = session()->get('token');

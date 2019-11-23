@@ -28,6 +28,18 @@ body {
   text-align: center;
 }
 
+.uk-card-badge {
+  background-color: #67073A;
+  padding: 5px 10px;
+}
+
+.uk-comment-primary {
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
 a:hover {
   text-decoration: none;
 }
@@ -305,6 +317,30 @@ input:checked + .slider:before {
 .main-dashboard .content .stats .uk-card .content_overview .dev,
 .main-dashboard .content .overview .uk-card .content_overview .dev {
   color: #67073A;
+}
+
+.main-dashboard .content .stats .uk-card .users a,
+.main-dashboard .content .overview .uk-card .users a {
+  color: #67073A;
+  text-decoration: none;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.main-dashboard .content .stats .uk-card .users a:hover,
+.main-dashboard .content .overview .uk-card .users a:hover {
+  color: #920039;
+}
+
+.main-dashboard .content .stats .stats_profile .uk-card,
+.main-dashboard .content .overview .stats_profile .uk-card {
+  max-height: 30vh;
+  overflow-y: auto;
+}
+
+.main-dashboard .content .stats .stats_profile .uk-card .profile_stats a,
+.main-dashboard .content .overview .stats_profile .uk-card .profile_stats a {
+  color: #999;
 }
 
 .sidebarDashboard {

@@ -27,7 +27,7 @@ Route::get('/dashboard/suggestions',
 )->name('suggestions');
 Route::get('/dashboard/suggestion/{id}',
     'DashboardController@index'
-)->name('sugestion');
+)->name('suggestion');
 
 Route::get('/dashboard/sessions',
     'DashboardController@index'

@@ -1,5 +1,6 @@
 $pink: #67073A
 $blue: #09295A
+$darkgrey: #999
 $grey: #D9D9D9
 $lightgrey: #F9F9F9
 $lightpink: #920039
@@ -21,6 +22,14 @@ body
 	color: white
 .text-center
 	text-align: center
+.uk-card-badge
+	background-color: $pink
+	padding: 5px 10px
+.uk-comment-primary
+	background-color: #fff
+	border-radius: 6px
+	box-shadow: 0 5px 15px rgba(0,0,0,.08)
+	-webkit-box-shadow: 0 5px 15px rgba(0,0,0,.08)
 
 a
 	&:hover
@@ -212,6 +221,20 @@ input:checked + .slider
 						margin-top: -125px
 					.dev
 						color: $pink
+				.users
+					a
+						color: $pink
+						text-decoration: none
+						transition: .5s
+						&:hover
+							color: $lightpink
+			.stats_profile
+				.uk-card
+					max-height: 30vh
+					overflow-y: auto
+					.profile_stats
+						a
+							color: $darkgrey
 
 
 
