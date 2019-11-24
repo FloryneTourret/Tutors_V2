@@ -2,7 +2,11 @@
 
 @section('content')
 @if ($exist == true && $tutor)
-<h1 class="color-white">Bonjour {{ $user->login }}</h1>
+@if($user->login == session()->get('username'))
+    <h1 class="color-white">Bonjour, {{ $user->login }}</h1>
+@else
+    <h1 class="color-white">Profil de {{ $user->login }}</h1>
+@endif
 <div class="overview" uk-grid="masonry: true">
     <div class="uk-width-3-5@s">
             

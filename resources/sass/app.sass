@@ -1,4 +1,5 @@
 $pink: #67073A
+$darkpink: #4A001C
 $blue: #09295A
 $darkgrey: #999
 $grey: #D9D9D9
@@ -10,6 +11,16 @@ body
 	background-color: $grey
 	min-height: 100vh
 	padding-bottom: 20px
+::-webkit-scrollbar 
+	width: 10px
+::-webkit-scrollbar-track 
+	background: $grey
+::-webkit-scrollbar-thumb 
+	background: $pink
+	transition: .5s
+::-webkit-scrollbar-thumb:hover 
+	background: $darkpink
+
 .color-pink 
 	color: $pink
 .color-lightpink 
@@ -249,7 +260,7 @@ input:checked + .slider
 			.stats_profile
 				.uk-card
 					max-height: 30vh
-					overflow-y: auto
+					overflow-y: auto				
 					.profile_stats
 						a
 							color: $darkgrey
