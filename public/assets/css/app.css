@@ -164,17 +164,10 @@ input:checked + .slider:before {
   color: black;
 }
 
-.main {
-  width: 95%;
-  margin: auto;
-  position: relative;
-  top: -50px;
-  background-color: #F9F9F9;
-  border-radius: 6px;
-}
-
 .main .content {
   padding: 50px;
+  position: relative;
+  top: -25vh;
 }
 
 .main .content .posts .uk-card {
@@ -189,7 +182,7 @@ input:checked + .slider:before {
   border-top-left-radius: 6px;
 }
 
-.main .content .posts .uk-card .uk-card-media-left {
+.main .content .posts .uk-card .img-left {
   border-top-left-radius: 6px;
   border-bottom-left-radius: 6px;
 }
@@ -200,10 +193,48 @@ input:checked + .slider:before {
 }
 
 .main .content .posts .categories a {
-  border: 1px solid #67073A;
-  color: #67073A;
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
   padding: 10px 20px;
   text-decoration: none;
+}
+
+.main .content .posts .categories a:hover,
+.main .content .posts .categories a.active {
+  border: 1px solid #67073A;
+  color: #67073A;
+  background-color: white;
+}
+
+.main .content .posts .pagination {
+  margin-top: 50px;
+}
+
+.main .content .posts .pagination nav ul {
+  text-align: center;
+}
+
+.main .content .posts .pagination nav ul li {
+  display: inline;
+}
+
+.main .content .posts .pagination nav ul li a {
+  font-size: 1.2rem;
+  color: #999;
+  font-weight: 600;
+  margin: 10px;
+}
+
+.main .content .posts .pagination nav ul li span {
+  font-size: 1.2rem;
+  color: #67073A;
+  font-weight: 600;
+  margin: 10px;
+}
+
+.main .content .posts .pagination nav ul li.disabled {
+  display: none;
 }
 
 .main-dashboard .navbarDashboard {

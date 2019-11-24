@@ -27,7 +27,7 @@ class HomeController extends Controller
 				->where('nom', $category)
 				->first();
 				if ($category)
-					return view('home', compact('posts'), ['categories' => $categories]);
+					return view('home', compact('posts'), ['categories' => $categories, 'categorie' => $category->nom]);
 				else
 					return view('home', ['error' => 'Cette page n\'existe pas']);
 			}
@@ -36,7 +36,16 @@ class HomeController extends Controller
 			->latest()
 			->paginate(5);
 
-			return view('home', compact('posts'), ['categories' => $categories]);
+			return view('home', compact('posts'), ['categories' => $categories, 'categorie' => null]);
+		}
+	}
+
+	public function post($id = null){
+		if(!session()->exists('username'))
+			return redirect()->route('login');
+		else
+		{
+			return view('post');
 		}
 	}
 }

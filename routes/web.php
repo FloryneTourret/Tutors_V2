@@ -53,6 +53,10 @@ Route::get('/logout',
 )->name('logout');
 
 
+Route::get('/post/{id}',
+    'HomeController@post'
+)->name('post');
+
 Route::get('/{category?}',
     'HomeController@index'
 )->name('home');

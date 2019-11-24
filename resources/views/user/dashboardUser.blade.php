@@ -44,7 +44,7 @@
 					<ul class="uk-list uk-list-divider">
 						<li class="uk-nav-header">Suggestions</li>
 						@foreach ($lastSuggestions as $item)
-							<li><a href="{{ route('sugestion', ['id' => $item->suggestion_id]) }}">{{$item->titre}}</a></li>
+							<li><a href="{{ route('suggestion', ['id' => $item->suggestion_id]) }}">{{$item->titre}}</a></li>
 						@endforeach
 
 						<li class="uk-nav-header">Events</li>
@@ -88,7 +88,7 @@
 					<ul class="uk-list uk-list-divider">
 						@if(count($mySuggestions) > 0)
 							@foreach ($mySuggestions as $item)
-								<li><a href="{{ route('sugestion', ['id' => $item->suggestion_id]) }}">{{$item->titre}}</a></li>
+								<li><a href="{{ route('suggestion', ['id' => $item->suggestion_id]) }}">{{$item->titre}}</a></li>
 							@endforeach
 						@else
 							<li>Aucune suggestion publiée</li>

@@ -6,9 +6,17 @@
 		<h2>{{$error}}</h2>
 	@else
 	<div class="categories">
-			<a href="/">Tous les posts</a>
+			@if ($categorie == null)
+				<a class="active" href="/">Tous les posts</a>
+			@else
+				<a href="/">Tous les posts</a>
+			@endif
 			@foreach ($categories as $category)
-				<a href="/{{$category->nom}}">{{$category->nom}}</a>
+				@if ($category->nom == $categorie)
+					<a class="active" href="/{{$category->nom}}">{{$category->nom}}</a>
+				@else
+					<a href="/{{$category->nom}}">{{$category->nom}}</a>
+				@endif
 			@endforeach
 		</div>
 
@@ -16,9 +24,9 @@
 		@php($range = 1)
 		@foreach ($posts as $post)
 			@if ($range == 1)
-				<div class="uk-width-1" id="card_{{ $range++ }}">
+				<a href="/post/{{$post->post_id}}" class="uk-width-1" id="card_{{ $range++ }}">
 					<div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
-						<div class=" uk-cover-container">
+						<div class="img-left uk-cover-container">
 							<img src="{{$post->image}}" alt="" uk-cover>
 							<canvas width="600" height="400"></canvas>
 						</div>
@@ -30,9 +38,9 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</a>
 			@else
-				<div class="uk-width-1-4@s">
+				<a href="/post/{{$post->post_id}}" class="uk-width-1-4@s">
 					<div>
 						<div class="uk-card uk-card-default">
 							<div class="uk-card-media-top">
@@ -44,7 +52,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</a>
 			@endif
 		@endforeach	
 		</div>

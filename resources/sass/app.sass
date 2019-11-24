@@ -122,14 +122,10 @@ input:checked + .slider
 					color: black
 
 .main
-	width: 95%
-	margin: auto
-	position: relative
-	top: -50px
-	background-color: $lightgrey
-	border-radius: 6px
 	.content
 		padding: 50px
+		position: relative
+		top: -25vh
 		.posts
 			.uk-card
 				border-radius: 6px
@@ -139,19 +135,41 @@ input:checked + .slider
 					background-size: cover
 					border-top-right-radius: 6px
 					border-top-left-radius: 6px
-				.uk-card-media-left
+				.img-left
 					border-top-left-radius: 6px
 					border-bottom-left-radius: 6px
 			.categories
 				margin-bottom: 50px
 				text-align: center
 				a
-					border: 1px solid $pink
-					color: $pink
+					background-color: transparent
+					color: white
+					border: 1px solid white
 					padding: 10px 20px
 					text-decoration: none
-	
-
+					&:hover, &.active
+						border: 1px solid $pink
+						color: $pink
+						background-color: white
+			.pagination
+				margin-top: 50px
+				nav
+					ul
+						text-align: center
+						li
+							display: inline
+							a
+								font-size: 1.2rem
+								color: #999
+								font-weight: 600
+								margin: 10px
+							span
+								font-size: 1.2rem
+								color: $pink
+								font-weight: 600
+								margin: 10px
+						li.disabled
+							display: none
 .main-dashboard
 	.navbarDashboard
 		height: 40vh
